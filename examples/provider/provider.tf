@@ -11,5 +11,5 @@ provider "slugify" {
 }
 
 output "name" {
-  value = provider::slugify::slug("Hello, World!")
+  value = provider::slugify::slug("Hello, World!") # "hello-world"
 }
