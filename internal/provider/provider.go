@@ -14,36 +14,36 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-// Ensure SlugifyProvider satisfies various provider interfaces.
-var _ provider.Provider = &SlugifyProvider{}
-var _ provider.ProviderWithFunctions = &SlugifyProvider{}
+// Ensure ToolsProvider satisfies various provider interfaces.
+var _ provider.Provider = &ToolsProvider{}
+var _ provider.ProviderWithFunctions = &ToolsProvider{}
 
-// SlugifyProvider defines the provider implementation.
-type SlugifyProvider struct {
+// ToolsProvider defines the provider implementation.
+type ToolsProvider struct {
 	// version is set to the provider version on release, "dev" when the
 	// provider is built and ran locally, and "test" when running acceptance
 	// testing.
 	version string
 }
 
-// SlugifyProviderModel describes the provider data model.
-type SlugifyProviderModel struct {
+// ToolsProviderModel describes the provider data model.
+type ToolsProviderModel struct {
 	Endpoint types.String `tfsdk:"endpoint"`
 }
 
-func (p *SlugifyProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+func (p *ToolsProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "scaffolding"
 	resp.Version = p.version
 }
 
-func (p *SlugifyProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *ToolsProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{},
 	}
 }
 
-func (p *SlugifyProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data SlugifyProviderModel
+func (p *ToolsProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+	var data ToolsProviderModel
 
 	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
 
@@ -52,15 +52,15 @@ func (p *SlugifyProvider) Configure(ctx context.Context, req provider.ConfigureR
 	}
 }
 
-func (p *SlugifyProvider) Resources(ctx context.Context) []func() resource.Resource {
+func (p *ToolsProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{}
 }
 
-func (p *SlugifyProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
+func (p *ToolsProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{}
 }
 
-func (p *SlugifyProvider) Functions(ctx context.Context) []func() function.Function {
+func (p *ToolsProvider) Functions(ctx context.Context) []func() function.Function {
 	return []func() function.Function{
 		NewSlugFunction,
 	}
@@ -68,7 +68,7 @@ func (p *SlugifyProvider) Functions(ctx context.Context) []func() function.Funct
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &SlugifyProvider{
+		return &ToolsProvider{
 			version: version,
 		}
 	}

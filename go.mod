@@ -1,4 +1,4 @@
-module terraform-provider-slugify
+module terraform-provider-tools
 
 go 1.21
 

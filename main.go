@@ -8,7 +8,7 @@ import (
 	"flag"
 	"log"
 
-	"terraform-provider-slugify/internal/provider"
+	"terraform-provider-tools/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
@@ -39,7 +39,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/worldline/slugify",
+		Address: "registry.terraform.io/worldline/tools",
 		Debug:   debug,
 	}
 

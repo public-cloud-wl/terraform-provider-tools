@@ -1,15 +1,15 @@
 terraform {
   required_providers {
-    slugify = {
-      source = "public-cloud-wl/slugify"
+    tools = {
+      source  = "public-cloud-wl/tools"
       version = "0.1.0"
     }
   }
 }
-provider "slugify" {
+provider "tools" {
   # example configuration here
 }
 
 output "name" {
-  value = provider::slugify::slug("Hello, World!") # "hello-world"
+  value = provider::tools::slug("Hello, World!") # "hello-world"
 }

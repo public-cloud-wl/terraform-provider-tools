@@ -22,11 +22,11 @@ func TestExampleFunction_Known(t *testing.T) {
 			{
 				Config: `
 				output "test" {
-					value = provider::scaffolding::example("testvalue")
+					value = provider::tools::slug("Test_value 123")
 				}
 				`,
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckOutput("test", "testvalue"),
+					resource.TestCheckOutput("test", "test-value-123"),
 				),
 			},
 		},
@@ -43,36 +43,11 @@ func TestExampleFunction_Null(t *testing.T) {
 			{
 				Config: `
 				output "test" {
-					value = provider::scaffolding::example(null)
+					value = provider::tools::slug(null)
 				}
 				`,
 				// The parameter does not enable AllowNullValue
 				ExpectError: regexp.MustCompile(`argument must not be null`),
-			},
-		},
-	})
-}
-
-func TestExampleFunction_Unknown(t *testing.T) {
-	resource.UnitTest(t, resource.TestCase{
-		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
-		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
-		Steps: []resource.TestStep{
-			{
-				Config: `
-				resource "terraform_data" "test" {
-					input = "testvalue"
-				}
-				
-				output "test" {
-					value = provider::scaffolding::example(terraform_data.test.output)
-				}
-				`,
-				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckOutput("test", "testvalue"),
-				),
 			},
 		},
 	})

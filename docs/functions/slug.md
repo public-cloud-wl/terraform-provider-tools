@@ -13,7 +13,7 @@ Generate slug from Unicode string
 ## Example
 
 ```text
-provider::slugify::slug("Hello, World!") # "hello-world"
+provider::tools::slug("Hello, World!") # "hello-world"
 ```
 
 ## Arguments

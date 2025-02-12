@@ -5,6 +5,7 @@ package provider
 
 import (
 	"context"
+	"strings"
 
 	"github.com/gosimple/slug"
 	"github.com/hashicorp/terraform-plugin-framework/function"
@@ -48,5 +49,6 @@ func (r SlugFunction) Run(ctx context.Context, req function.RunRequest, resp *fu
 	}
 
 	output := slug.Make(data)
+	output = strings.ReplaceAll(output, "_", "-")
 	resp.Error = function.ConcatFuncErrors(resp.Result.Set(ctx, output))
 }
