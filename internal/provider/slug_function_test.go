@@ -24,7 +24,7 @@ terraform {
   required_providers {
     tools = {
       source  = "public-cloud-wl/tools"
-      version = "0.1.0"
+      version = "0.1.1"
     }
   }
 }
@@ -44,14 +44,14 @@ var (
 )
 
 func TestExampleFunction_Known(t *testing.T) {
-	resource.UnitTest(t, resource.TestCase{
+	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: `
+				Config: providerConfig + `
 				output "test" {
 					value = provider::tools::slug("Test_value 123")
 				}
@@ -65,14 +65,14 @@ func TestExampleFunction_Known(t *testing.T) {
 }
 
 func TestExampleFunction_Null(t *testing.T) {
-	resource.UnitTest(t, resource.TestCase{
+	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			{
-				Config: `
+				Config: providerConfig + `
 				output "test" {
 					value = provider::tools::slug(null)
 				}
