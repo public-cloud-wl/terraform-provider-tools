@@ -1,3 +1,5 @@
-## 0.1.0 (Unreleased)
+## 0.2.0
 
-FEATURES:
+# Feat:
+- Add group name function
+

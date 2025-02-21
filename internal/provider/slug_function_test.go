@@ -24,7 +24,7 @@ terraform {
   required_providers {
     tools = {
       source  = "public-cloud-wl/tools"
-      version = "0.1.1"
+      version = "0.2.0"
     }
   }
 }
