@@ -1,5 +1,5 @@
 ## 0.2.0
 
 # Feat:
-- Add group name function
+- Add idm group name function
 
