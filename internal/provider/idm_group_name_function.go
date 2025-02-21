@@ -57,9 +57,9 @@ func (r IdmGroupName) Run(ctx context.Context, req function.RunRequest, resp *fu
 	role := strings.Split(strings.TrimPrefix(member, "idmrole:"), "@")[0]
 	domain = strings.Split(strings.TrimPrefix(member, "idmrole:"), "@")[1]
 	if role != "*" {
-		output = slug.Make("dl-idm-"+strings.ToLower(as)+"-"+strings.ToLower(role)) + "@" + domain
+		output = "group:" + slug.Make("dl-idm-"+strings.ToLower(as)+"-"+strings.ToLower(role)) + "@" + domain
 	} else {
-		output = slug.Make("dl-idm-"+strings.ToLower(as)) + "@" + domain
+		output = "group:" + slug.Make("dl-idm-"+strings.ToLower(as)) + "@" + domain
 	}
 	output = strings.ReplaceAll(output, "_", "-")
 	resp.Error = function.ConcatFuncErrors(resp.Result.Set(ctx, output))
