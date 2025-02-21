@@ -63,6 +63,7 @@ func (p *ToolsProvider) DataSources(ctx context.Context) []func() datasource.Dat
 func (p *ToolsProvider) Functions(ctx context.Context) []func() function.Function {
 	return []func() function.Function{
 		NewSlugFunction,
+		NewGroupNameFunction,
 	}
 }
 
