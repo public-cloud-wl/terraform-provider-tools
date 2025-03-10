@@ -14,16 +14,6 @@ const (
 	// It is also possible to use the HASHICUPS_ environment variables instead,
 	// such as updating the Makefile and running the testing through that tool.
 	providerConfig = `
-terraform {
-  required_providers {
-    tools = {
-      source  = "public-cloud-wl/tools"
-      version = "0.1.1"
-    }
-  }
-}
-provider "tools" {
-}
 `
 )
 
