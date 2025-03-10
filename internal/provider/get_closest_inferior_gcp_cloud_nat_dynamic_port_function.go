@@ -82,7 +82,7 @@ func (r GetClosestInferiorGCPCloudNatDynamicPortFunction) Run(ctx context.Contex
 		allowed_dynamic_ports = append(allowed_dynamic_ports, 65536) // add specific pow of 2 available for max
 	}
 	for _, v := range allowed_dynamic_ports {
-		if inputNumber <= v {
+		if inputNumber >= v {
 			output = v
 		}
 	}
