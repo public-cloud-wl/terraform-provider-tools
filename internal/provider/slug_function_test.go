@@ -8,47 +8,16 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-version"
-	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 	"github.com/hashicorp/terraform-plugin-testing/tfversion"
 )
 
-const (
-	// providerConfig is a shared configuration to combine with the actual
-	// test configuration so the HashiCups client is properly configured.
-	// It is also possible to use the HASHICUPS_ environment variables instead,
-	// such as updating the Makefile and running the testing through that tool.
-	providerConfig = `
-terraform {
-  required_providers {
-    tools = {
-      source  = "public-cloud-wl/tools"
-      version = "0.1.1"
-    }
-  }
-}
-provider "tools" {
-}
-`
-)
-
-var (
-	// testAccProtoV6ProviderFactories are used to instantiate a provider during
-	// acceptance testing. The factory function will be invoked for every Terraform
-	// CLI command executed to create a provider server to which the CLI can
-	// reattach.
-	testAccProtoV6ProviderFactories = map[string]func() (tfprotov6.ProviderServer, error){
-		"tools": providerserver.NewProtocol6WithError(New("test")()),
-	}
-)
-
-func TestExampleFunction_Known(t *testing.T) {
+func TestSlugFunction_Known(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -64,12 +33,12 @@ func TestExampleFunction_Known(t *testing.T) {
 	})
 }
 
-func TestExampleFunction_Null(t *testing.T) {
+func TestSlugFunction_Null(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
