@@ -17,7 +17,7 @@ func TestNetworkIsInSubnetFunction_Contained(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -38,7 +38,7 @@ func TestNetworkIsInSubnetFunction_NotContained(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -59,7 +59,7 @@ func TestNetworkIsInSubnetFunction_SameCidr(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -80,7 +80,7 @@ func TestNetworkIsInSubnetFunction_LargerInSmaller(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -101,7 +101,7 @@ func TestNetworkIsInSubnetFunction_PartialOverlap(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -122,7 +122,7 @@ func TestNetworkIsInSubnetFunction_IPv6Contained(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -143,7 +143,7 @@ func TestNetworkIsInSubnetFunction_IPv6NotContained(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -164,7 +164,7 @@ func TestNetworkIsInSubnetFunction_NullChildCidr(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -183,7 +183,7 @@ func TestNetworkIsInSubnetFunction_NullParentCidr(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -202,7 +202,7 @@ func TestNetworkIsInSubnetFunction_InvalidChildCidr(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -210,7 +210,7 @@ func TestNetworkIsInSubnetFunction_InvalidChildCidr(t *testing.T) {
 					value = provider::tools::network_is_in_subnet("not-a-cidr", "10.0.0.0/16")
 				}
 				`,
-				ExpectError: regexp.MustCompile(`invalid child CIDR`),
+				ExpectError: regexp.MustCompile(`(?s)invalid.*child CIDR.*not-a-cidr`),
 			},
 		},
 	})
@@ -221,7 +221,7 @@ func TestNetworkIsInSubnetFunction_InvalidParentCidr(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -229,7 +229,7 @@ func TestNetworkIsInSubnetFunction_InvalidParentCidr(t *testing.T) {
 					value = provider::tools::network_is_in_subnet("10.0.1.0/24", "invalid")
 				}
 				`,
-				ExpectError: regexp.MustCompile(`invalid parent CIDR`),
+				ExpectError: regexp.MustCompile(`(?s)invalid.*parent CIDR.*invalid`),
 			},
 		},
 	})
@@ -240,7 +240,7 @@ func TestNetworkIsInSubnetFunction_InvalidMask(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -248,7 +248,7 @@ func TestNetworkIsInSubnetFunction_InvalidMask(t *testing.T) {
 					value = provider::tools::network_is_in_subnet("10.0.1.0/24", "10.0.0.0/33")
 				}
 				`,
-				ExpectError: regexp.MustCompile(`invalid parent CIDR`),
+				ExpectError: regexp.MustCompile(`(?s)invalid.*parent CIDR.*10\.0\.0\.0/33`),
 			},
 		},
 	})
@@ -259,7 +259,7 @@ func TestNetworkIsInSubnetFunction_EdgeCaseFirstSubnet(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
@@ -280,7 +280,7 @@ func TestNetworkIsInSubnetFunction_EdgeCaseLastSubnet(t *testing.T) {
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
 		},
-		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
+		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
 			{
 				Config: providerConfig + `
