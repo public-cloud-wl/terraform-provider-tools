@@ -15,7 +15,7 @@ import (
 func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_Equals(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
@@ -36,7 +36,7 @@ func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_Equals(t *testing.T) {
 func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_MoreMin(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
@@ -57,7 +57,7 @@ func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_MoreMin(t *testing.T) 
 func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_MoreMax(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
@@ -78,7 +78,7 @@ func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_MoreMax(t *testing.T) 
 func TestGetClosestInferiorGCPCloudNatDynamicPortFunction_Error(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{

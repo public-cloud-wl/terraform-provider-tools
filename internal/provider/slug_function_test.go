@@ -15,7 +15,7 @@ import (
 func TestSlugFunction_Known(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
@@ -36,7 +36,7 @@ func TestSlugFunction_Known(t *testing.T) {
 func TestSlugFunction_Null(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
-			tfversion.SkipBelow(version.Must(version.NewVersion("1.8.0"))),
+			tfversion.SkipBelow(version.Must(version.NewVersion("1.14.0"))),
 		},
 		ProtoV6ProviderFactories: testAccDefaultFactories,
 		Steps: []resource.TestStep{
