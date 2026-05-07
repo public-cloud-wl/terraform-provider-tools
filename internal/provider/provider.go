@@ -65,6 +65,8 @@ func (p *ToolsProvider) Functions(ctx context.Context) []func() function.Functio
 		NewSlugFunction,
 		NewGetClosestInferiorGCPCloudNatDynamicPortFunction,
 		NewNetworkIsInSubnetFunction,
+		NewApplicationServiceHashFunction,
+		NewRoleHashFunction,
 	}
 }
 
