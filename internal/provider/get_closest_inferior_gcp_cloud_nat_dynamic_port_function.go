@@ -45,7 +45,7 @@ func (r GetClosestInferiorGCPCloudNatDynamicPortFunction) Run(ctx context.Contex
 	var portType string
 	var inputNumber int64
 	var allowed_dynamic_ports []int64
-	var correctType bool = false
+	var correctType bool
 	var output int64 = 32
 
 	resp.Error = function.ConcatFuncErrors(req.Arguments.Get(ctx, &portType, &inputNumber))
@@ -78,7 +78,7 @@ func (r GetClosestInferiorGCPCloudNatDynamicPortFunction) Run(ctx context.Contex
 		32768,
 	}
 	// all pow of 2 allowed for min
-	if "max" == portType {
+	if portType == "max" {
 		allowed_dynamic_ports = append(allowed_dynamic_ports, 65536) // add specific pow of 2 available for max
 	}
 	for _, v := range allowed_dynamic_ports {
