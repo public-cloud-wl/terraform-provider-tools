@@ -11,7 +11,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
 // Ensure ToolsProvider satisfies various provider interfaces.
@@ -26,11 +25,6 @@ type ToolsProvider struct {
 	version string
 }
 
-// ToolsProviderModel describes the provider data model.
-type ToolsProviderModel struct {
-	Endpoint types.String `tfsdk:"endpoint"`
-}
-
 func (p *ToolsProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "tools"
 	resp.Version = p.version
@@ -42,14 +36,8 @@ func (p *ToolsProvider) Schema(ctx context.Context, req provider.SchemaRequest, 
 	}
 }
 
-func (p *ToolsProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
-	var data ToolsProviderModel
-
-	resp.Diagnostics.Append(req.Config.Get(ctx, &data)...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
+func (p *ToolsProvider) Configure(_ context.Context, _ provider.ConfigureRequest, _ *provider.ConfigureResponse) {
+	// This provider has no configuration. It only exposes pure functions.
 }
 
 func (p *ToolsProvider) Resources(ctx context.Context) []func() resource.Resource {
